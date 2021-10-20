@@ -1,0 +1,25 @@
+extends layout
+
+block content
+
+  h1=title
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Item: #{item_list.item}
+
+    dl
+        dt
+            a(href=item_list.url) #{item_list.item}
+        dd #{item_list.description}
+        dd #{item_list.category.category}
+        dd #{item_list.price}
+        dd #{item_list.number_in_stock}
+
+
+
+  hr
+  p
+    a(href=item_list.url+'/delete') Delete item
+  p
+    a(href=item_list.url+'/update') Update item
