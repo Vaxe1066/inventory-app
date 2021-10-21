@@ -3,7 +3,7 @@ extends layout
 block content
   h1= title
 
-  form(method='POST' action='')
+  form(method='POST' action='' enctype="multipart/form-data")
     div.form-group
       label(for='itemname') Item Name:
       input#item.form-control(type='text', placeholder='Name of item' name='itemname' required='true' value=(undefined===item ? '' : item.item) )
@@ -31,6 +31,9 @@ block content
     div.form-group
       label(for='stock') Number of Stock :
       input#stock.form-control(type='text', placeholder='stock' name='stock' value=(undefined===item ? '' : item.number_in_stock) required='true')
+    div.form-group
+      label(for='avatar') Upload Image:
+      input#avatar.form-control(type='file' name='avatar' accept="image/*")
     button.btn.btn-primary(type='submit') Submit
 
   if errors

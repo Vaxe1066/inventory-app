@@ -13,10 +13,14 @@
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "express-validator": "^6.13.0",
+    "fs-extra": "^10.0.0",
     "http-errors": "~1.6.3",
     "mongoose": "^6.0.11",
     "morgan": "~1.9.1",
-    "pug": "2.0.0-beta11"
+    "multer": "^1.4.3",
+    "multer-gridfs-storage": "^5.0.2",
+    "pug": "2.0.0-beta11",
+    "util": "^0.12.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"

@@ -4,7 +4,27 @@ var Item = require('../models/item');
 var Category = require('../models/category');
 
 
-var async = require('async');
+const multer  = require('multer')
+const fs = require('fs-extra')
+   
+
+var Image = require('../models/image');
+var Item = require('../models/item');
+
+
+var async = require('async');;
+// SET STORAGE
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, '../public/images')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+  })
+
+var upload = multer({ storage: storage })
+
 // Display list of all items.
 exports.item_list = function(req, res) {
     Item.find()
@@ -67,13 +87,17 @@ exports.item_create_post = [
             return;
         }
         else {
+            var img = fs.readFileSync(req.file.path);
+            var encode_image = img.toString('base64');
 
             var item = new Item(
                 { item: req.body.itemname,
                     description: req.body.description,
                     category: req.body.category,
                     price: req.body.price,
-                    number_in_stock: req.body.stock
+                    number_in_stock: req.body.stock,
+                    contentType: req.file.mimetype,
+                    image: encode_image
                     });
             // Data from form is valid. Save book.
             item.save(function (err) {
@@ -159,13 +183,16 @@ exports.item_update_post = [
             return;
         }
         else {
-
+            var img = fs.readFileSync(req.file.path);
+            var encode_image = img.toString('base64');
             var item = new Item(
                 { item: req.body.itemname,
                     description: req.body.description,
                     category: req.body.category,
                     price: req.body.price,
                     number_in_stock: req.body.stock,
+                    contentType: req.file.mimetype,
+                    image: encode_image,
                     _id: req.params.id
                     });
             // Data from form is valid. Save book.

@@ -13,8 +13,13 @@ block content
             a(href=item_list.url) #{item_list.item}
         dd #{item_list.description}
         dd #{item_list.category.category}
-        dd #{item_list.price}
+        dd #{item_list.price_formatted}
         dd #{item_list.number_in_stock}
+        if item_list.image
+          dd 
+            img(src=`data:image/jpg;base64,${item_list.image}`)
+
+
 
 
 
