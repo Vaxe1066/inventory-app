@@ -13,17 +13,9 @@ var Item = require('../models/item');
 
 
 var async = require('async');;
-// SET STORAGE
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, '../public/images')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
-    }
-  })
 
-var upload = multer({ storage: storage })
+
+var upload = multer()
 
 // Display list of all items.
 exports.item_list = function(req, res) {
